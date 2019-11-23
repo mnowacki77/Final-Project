@@ -1,14 +1,14 @@
-package com.sda.tasklist.model;
+package com.sda.tasklist.model.todo;
 
+import com.sda.tasklist.model.Category;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
 @Builder
-public class ToDoModel {
+public class ToDoEntity {
 
     private long id;
     private String name;
