@@ -36,11 +36,11 @@
         <br />
         <label>Security Question</label>
         <input th:type="text" th:field="*{securityQuestion}" />
-        <div th:if="${#fields.hasErrors('password')}" th:errors="*{securityQuestion}">Security Question Error</div>
+        <div th:if="${#fields.hasErrors('securityQuestion')}" th:errors="*{securityQuestion}">Security Question Error</div>
         <br />
         <label>Security Answer</label>
         <input th:type="text" th:field="*{securityAnswer}" />
-        <div th:if="${#fields.hasErrors('password')}" th:errors="*{securityAnswer}">Security Answer Error</div>
+        <div th:if="${#fields.hasErrors('securityAnswer')}" th:errors="*{securityAnswer}">Security Answer Error</div>
         <br />
         <button th:type="submit">Register</button>
     </form>

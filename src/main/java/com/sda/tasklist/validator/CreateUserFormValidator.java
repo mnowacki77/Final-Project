@@ -18,7 +18,36 @@ public class CreateUserFormValidator implements Validator {
         CreateUserForm createUserForm = (CreateUserForm) o;
 
         if (StringUtils.isBlank(createUserForm.getLogin())) {
-            errors.rejectValue("login", "createUserForm.validator.field.notEmpty");
+            errors.rejectValue("login", "validator.notEmpty");
+        }
+
+        if (StringUtils.isBlank(createUserForm.getPassword())) {
+            errors.rejectValue("password", "validator.notEmpty");
+        }
+
+        if (StringUtils.isBlank(createUserForm.getConfirmedPassword())) {
+            errors.rejectValue("confirmedPassword", "validator.notEmpty");
+        }
+
+        if (StringUtils.isBlank(createUserForm.getEmail())) {
+            errors.rejectValue("email", "validator.notEmpty");
+        } else {
+            if (!EmailValidator.isValid(createUserForm.getEmail())) {
+                errors.rejectValue("email", "validator.emailFormat");
+            }
+        }
+
+        if (!createUserForm.getPassword().equals(createUserForm.getConfirmedPassword())) {
+            errors.rejectValue("password", "validator.PasswordsNotMatch");
+            errors.rejectValue("confirmedPassword", "validator.PasswordsNotMatch");
+        }
+
+        if (StringUtils.isBlank(createUserForm.getSecurityQuestion())) {
+            errors.rejectValue("securityQuestion", "validator.notEmpty");
+        }
+
+        if (StringUtils.isBlank(createUserForm.getSecurityAnswer())) {
+            errors.rejectValue("securityAnswer", "validator.notEmpty");
         }
     }
 }
