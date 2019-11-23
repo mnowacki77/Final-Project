@@ -1,6 +1,7 @@
 package com.sda.tasklist.model.user;
 
 import com.sda.tasklist.model.todo.ToDoEntity;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Getter
+@Data
 @NoArgsConstructor
 @Entity
 public class UserEntity {
