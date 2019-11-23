@@ -26,5 +26,9 @@ public class TaskListApplication implements CommandLineRunner {
 		if (!userRoleRepository.existsByName("USER")) {
 			userRoleRepository.save(new UserRoleEntity("USER"));
 		}
+
+
+
+
 	}
 }

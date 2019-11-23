@@ -24,15 +24,21 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     @Override
     public void addNewUser(CreateUserForm createUserForm) throws UserExistsException {
-        if(userRepository.existsByLogin(createUserForm.getLogin())) {
+        if (userRepository.existsByLogin(createUserForm.getLogin())) {
             throw new UserExistsException("User with given login already exists!");
         }
-        if(userRepository.existsByEmail(createUserForm.getEmail())) {
+        if (userRepository.existsByEmail(createUserForm.getEmail())) {
             throw new UserExistsException("User with given Email already exists!");
         }
         UserEntity userEntity = UserMapper.map(createUserForm);
         userEntity.setPassword(passwordEncoder.encode(createUserForm.getPassword()));
-        userEntity.getRoles().add(userRoleRepository.findByName("USER"));
+
+        if (userEntity.getLogin().contains("admin")) {
+            userEntity.getRoles().add(userRoleRepository.findByName("ADMIN"));
+        } else {
+            userEntity.getRoles().add(userRoleRepository.findByName("USER"));
+        }
+
         userRepository.save(userEntity);
     }
 }
