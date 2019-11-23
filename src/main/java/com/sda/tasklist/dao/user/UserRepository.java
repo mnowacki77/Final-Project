@@ -6,11 +6,14 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
+
 public interface UserRepository extends JpaRepository<UserEntity,Long> {
 
     Optional<UserEntity> findByLogin(String login);
 
-    Boolean existsByLogin(String name);
+    Boolean existsByLogin(String login);
+
+    Boolean existsByEmail(String email);
 
     @Query("from UserEntity u left join fetch u.roles where u.login = :login")
     Optional<UserEntity> findUserWithRolesByLogin(String login);

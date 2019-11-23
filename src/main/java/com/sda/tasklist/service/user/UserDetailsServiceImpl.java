@@ -28,8 +28,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        Optional<UserEntity> byUserName = userRepository.findUserWithRolesByLogin(login);
-        UserEntity userEntity = byUserName.orElseThrow(() -> new UsernameNotFoundException("Not found user with name: " + login));
+        Optional<UserEntity> byLogin = userRepository.findUserWithRolesByLogin(login);
+        UserEntity userEntity = byLogin.orElseThrow(() -> new UsernameNotFoundException("Not found user with name: " + login));
 
         return new User(userEntity.getLogin(), userEntity.getPassword(), grantedAuthorities(userEntity.getRoles()));
     }
