@@ -23,7 +23,7 @@
         <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
         <br />
         <label>Confirm password</label>
-        <input th:type="password" th:field="*{password}" />
+        <input th:type="password" th:field="*{confirmedPassword}" />
         <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Confirm Password Error</div>
         <br />
         <label>Email</label>
@@ -31,7 +31,7 @@
         <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
         <br />
         <label>Day of Birth</label>
-        <input th:type="date" th:field="*{birthDate}" />
+        <input th:type="date" th:value="*{birthDate}" th:field="*{birthDate}" />
         <div th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}">BirthDate Error</div>
         <br />
         <label>Security Question</label>
