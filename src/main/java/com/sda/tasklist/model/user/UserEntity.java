@@ -26,6 +26,7 @@ public class UserEntity {
     private String password;
     private LocalDate birthDate;
     private String securityQuestion;
+    private String securityAnswer;
 
     @ManyToMany
     private Set<UserRoleEntity> roles = new HashSet<>();

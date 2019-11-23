@@ -11,7 +11,7 @@
 <body>
 
     <div class="container">
-        Hello Login Page
+        Login Page
         <form th:action="@{/login}" method="post" th:object="${loginForm}">
             <label>UserName</label>
             <input th:type="text" th:field="*{userName}" />
