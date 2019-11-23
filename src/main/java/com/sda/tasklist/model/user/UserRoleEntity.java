@@ -1,6 +1,7 @@
 package com.sda.tasklist.model.user;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,4 +19,9 @@ public class UserRoleEntity {
     private long id;
 
     private String name;
+
+
+    public UserRoleEntity(String name) {
+        this.name = name;
+    }
 }

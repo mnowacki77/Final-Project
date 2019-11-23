@@ -1,13 +1,11 @@
 package com.sda.tasklist.model.todo;
 
 import com.sda.tasklist.model.Category;
+import com.sda.tasklist.model.user.UserEntity;
 import lombok.Builder;
 import lombok.Getter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -25,4 +23,7 @@ public class ToDoEntity {
     private LocalDateTime creationDate;
     private LocalDateTime deadline;
     private boolean isDone;
+
+    @ManyToOne
+    private UserEntity user;
 }
