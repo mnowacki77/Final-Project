@@ -30,6 +30,10 @@
         <input th:type="text" th:field="*{email}" />
         <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
         <br />
+        <label>Day of Birth</label>
+        <input th:type="date" th:field="*{birthDate}" />
+        <div th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}">BirthDate Error</div>
+        <br />
         <label>Security Question</label>
         <input th:type="text" th:field="*{securityQuestion}" />
         <div th:if="${#fields.hasErrors('password')}" th:errors="*{securityQuestion}">Security Question Error</div>
