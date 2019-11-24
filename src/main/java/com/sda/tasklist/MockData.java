@@ -30,24 +30,27 @@ public class MockData {
 
     @PostConstruct
     public void mock() {
-        UserEntity user = new UserEntity();
-        user.setLogin("mock");
-        user.setPassword(passwordEncoder.encode("mock"));
-        user.setEmail("mock@mock.pl");
-        user.setBirthDate(LocalDate.now());
-        user.setSecurityQuestion("mock");
-        user.setSecurityAnswer("mock");
-        user.getRoles().add(userRoleRepository.findByName("USER"));
-        user.getRoles().add(userRoleRepository.findByName("ADMIN"));
-        UserEntity savedUser = userRepository.save(user);
-        ToDoEntity todo = new ToDoEntity();
-        todo.setName("Mock Task");
-        todo.setDescription("Mock Description");
-        todo.setStatus("OPEN");
-        todo.setCreationDate(LocalDateTime.now());
-        todo.setDeadline(LocalDateTime.now().plusDays(3));
-        todo.setDone(false);
-        todo.setUser(savedUser);
-        toDoRepository.save(todo);
+
+        if (!userRepository.existsByLogin("mock")) {
+            UserEntity user = new UserEntity();
+            user.setLogin("mock");
+            user.setPassword(passwordEncoder.encode("mock"));
+            user.setEmail("mock@mock.pl");
+            user.setBirthDate(LocalDate.now());
+            user.setSecurityQuestion("mock");
+            user.setSecurityAnswer("mock");
+            user.getRoles().add(userRoleRepository.findByName("USER"));
+            user.getRoles().add(userRoleRepository.findByName("ADMIN"));
+            UserEntity savedUser = userRepository.save(user);
+            ToDoEntity todo = new ToDoEntity();
+            todo.setName("Mock Task");
+            todo.setDescription("Mock Description");
+            todo.setStatus("OPEN");
+            todo.setCreationDate(LocalDateTime.now());
+            todo.setDeadline(LocalDateTime.now().plusDays(3));
+            todo.setDone(false);
+            todo.setUser(savedUser);
+            toDoRepository.save(todo);
+        }
     }
 }
