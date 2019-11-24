@@ -29,7 +29,7 @@
                             </ul>
                             <ul class="dropdown-menu" sec:authorize="isAuthenticated()">
                                 <li><a href="#" th:href="@{/}">Home Page</a></li>
-                                <li><a href="#" th:href="@{/admin/users}">List of Users</a></li>
+                                <li sec:authorize="hasRole('ADMIN')"><a href="#" th:href="@{/admin/users}">List of Users</a></li>
                                 <li><a href="#" th:href="@{/logout}">Logout</a></li>
                             </ul></li>
                     </ul>

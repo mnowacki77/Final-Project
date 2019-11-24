@@ -15,38 +15,38 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 @SpringBootApplication
 public class TaskListApplication implements CommandLineRunner {
 
-	@Autowired
-	private UserRoleRepository userRoleRepository;
+    @Autowired
+    private UserRoleRepository userRoleRepository;
 
 
-	public static void main(String[] args) {
-		SpringApplication.run(TaskListApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(TaskListApplication.class, args);
+    }
 
-	@Override
-	public void run(String... args) throws Exception {
-		if (!userRoleRepository.existsByName("ADMIN")) {
-			userRoleRepository.save(new UserRoleEntity("ADMIN"));
-		}
-		if (!userRoleRepository.existsByName("USER")) {
-			userRoleRepository.save(new UserRoleEntity("USER"));
-		}
+    @Override
+    public void run(String... args) throws Exception {
+        if (!userRoleRepository.existsByName("ADMIN")) {
+            userRoleRepository.save(new UserRoleEntity("ADMIN"));
+        }
+        if (!userRoleRepository.existsByName("USER")) {
+            userRoleRepository.save(new UserRoleEntity("USER"));
+        }
 
-	}
 
-	@Autowired
-	private ThymeleafProperties properties;
-	@Value("${spring.thymeleaf.templates_root:}")
-	private String templatesRoot;
+    }
 
-	@Bean
-	public ITemplateResolver defaultTemplateResolver() {
-		FileTemplateResolver resolver = new FileTemplateResolver();
-		resolver.setSuffix(properties.getSuffix());
-		resolver.setPrefix(templatesRoot);
-		resolver.setTemplateMode(properties.getMode());
-		resolver.setCacheable(properties.isCache());
-		return resolver;
+    @Autowired
+    private ThymeleafProperties properties;
+    @Value("${spring.thymeleaf.templates_root:}")
+    private String templatesRoot;
 
-	}
+    @Bean
+    public ITemplateResolver defaultTemplateResolver() {
+        FileTemplateResolver resolver = new FileTemplateResolver();
+        resolver.setSuffix(properties.getSuffix());
+        resolver.setPrefix(templatesRoot);
+        resolver.setTemplateMode(properties.getMode());
+        resolver.setCacheable(properties.isCache());
+        return resolver;
+    }
 }
