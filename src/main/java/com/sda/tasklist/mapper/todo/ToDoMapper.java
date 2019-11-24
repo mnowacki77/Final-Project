@@ -1,5 +1,6 @@
 package com.sda.tasklist.mapper.todo;
 
+import com.sda.tasklist.dto.todo.CreateToDoForm;
 import com.sda.tasklist.dto.todo.ToDoDTO;
 import com.sda.tasklist.model.todo.ToDoEntity;
 
@@ -19,5 +20,16 @@ public class ToDoMapper {
         toDoDTO.setDeadline(toDoEntity.getDeadline().format(DateTimeFormatter.ofPattern(datePattern)));
         toDoDTO.setDone(toDoEntity.isDone());
         return toDoDTO;
+    }
+
+    public static ToDoEntity map(CreateToDoForm createToDoForm){
+        ToDoEntity toDoEntity = new ToDoEntity();
+        toDoEntity.setName(createToDoForm.getName());
+        toDoEntity.setDescription(createToDoForm.getDescription());
+        toDoEntity.setStatus(createToDoForm.getStatus());
+        toDoEntity.setDeadline(createToDoForm.getDeadline());
+        return toDoEntity;
+
+
     }
 }
