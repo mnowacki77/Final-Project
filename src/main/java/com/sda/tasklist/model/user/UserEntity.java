@@ -2,7 +2,6 @@ package com.sda.tasklist.model.user;
 
 import com.sda.tasklist.model.todo.ToDoEntity;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;

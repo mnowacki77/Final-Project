@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task List</title>
+</head>
+<body>
+
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th th:text="Id"></th>
+            <th th:text="Name"></th>
+            <th th:text="Status"></th>
+            <th th:text="Deadline"></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="todo : ${todos}">
+            <tr>
+                <td th:text="${todo.id}">...</td>
+                <td th:text="${todo.name}">...</td>
+                <td th:text="${todo.status}">...</td>
+                <td th:text="${todo.deadline}">...</td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

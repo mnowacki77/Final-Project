@@ -1,16 +1,15 @@
 package com.sda.tasklist.model.todo;
 
-import com.sda.tasklist.model.Category;
 import com.sda.tasklist.model.user.UserEntity;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Getter
-@Builder
+@Data
 @Entity
+@NoArgsConstructor
 public class ToDoEntity {
 
     @Id
@@ -19,7 +18,7 @@ public class ToDoEntity {
 
     private String name;
     private String description;
-    private Category category;
+    private String status;
     private LocalDateTime creationDate;
     private LocalDateTime deadline;
     private boolean isDone;
