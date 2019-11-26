@@ -47,7 +47,7 @@ public class MockData {
             todo.setDescription("Mock Description");
             todo.setStatus("OPEN");
             todo.setCreationDate(LocalDateTime.now());
-            todo.setDeadline(LocalDateTime.now().plusDays(3));
+            todo.setDeadline(LocalDate.now().plusDays(3));
             todo.setDone(false);
             todo.setUser(savedUser);
             toDoRepository.save(todo);

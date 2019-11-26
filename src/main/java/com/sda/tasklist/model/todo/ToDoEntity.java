@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -20,7 +21,7 @@ public class ToDoEntity {
     private String description;
     private String status;
     private LocalDateTime creationDate;
-    private LocalDateTime deadline;
+    private LocalDate deadline;
     private boolean isDone;
 
     @ManyToOne

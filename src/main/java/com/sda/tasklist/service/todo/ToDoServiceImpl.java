@@ -10,6 +10,7 @@ import com.sda.tasklist.model.user.UserEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +36,7 @@ public class ToDoServiceImpl implements ToDoService {
         UserEntity userEntity = userRepository.findByLogin(SecurityContextHolder.getContext().getAuthentication().getName()).get();
         ToDoEntity doEntity = ToDoMapper.map(createToDoForm);
         doEntity.setUser(userEntity);
+        doEntity.setCreationDate(LocalDateTime.now());
         toDoRepository.save(doEntity);
     }
 

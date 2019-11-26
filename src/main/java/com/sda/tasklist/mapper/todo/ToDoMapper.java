@@ -8,7 +8,8 @@ import java.time.format.DateTimeFormatter;
 
 public class ToDoMapper {
 
-    private static final String datePattern = "yyyy-MM-dd HH:mm:ss";
+    private static final String dateTimePattern = "yyyy-MM-dd HH:mm:ss";
+    private static final String datePattern = "yyyy-MM-dd";
 
     public static ToDoDTO map(ToDoEntity toDoEntity) {
         ToDoDTO toDoDTO = new ToDoDTO();
@@ -16,7 +17,7 @@ public class ToDoMapper {
         toDoDTO.setName(toDoEntity.getName());
         toDoDTO.setDescription(toDoEntity.getDescription());
         toDoDTO.setStatus(toDoEntity.getStatus());
-        toDoDTO.setCreationDate(toDoEntity.getCreationDate().format(DateTimeFormatter.ofPattern(datePattern)));
+        toDoDTO.setCreationDate(toDoEntity.getCreationDate().format(DateTimeFormatter.ofPattern(dateTimePattern)));
         toDoDTO.setDeadline(toDoEntity.getDeadline().format(DateTimeFormatter.ofPattern(datePattern)));
         toDoDTO.setDone(toDoEntity.isDone());
         return toDoDTO;
