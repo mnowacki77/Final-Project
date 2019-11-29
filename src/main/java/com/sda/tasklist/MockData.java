@@ -6,6 +6,7 @@ import com.sda.tasklist.dao.user.UserRepository;
 import com.sda.tasklist.dao.user.UserRoleRepository;
 import com.sda.tasklist.model.todo.ToDoEntity;
 import com.sda.tasklist.model.user.UserEntity;
+import com.sda.tasklist.model.user.UserRoleEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -31,6 +32,12 @@ public class MockData {
     @PostConstruct
     public void mock() {
 
+        if (!userRoleRepository.existsByName("ADMIN")) {
+            userRoleRepository.save(new UserRoleEntity("ADMIN"));
+        }
+        if (!userRoleRepository.existsByName("USER")) {
+            userRoleRepository.save(new UserRoleEntity("USER"));
+        }
         if (!userRepository.existsByLogin("mock")) {
             UserEntity user = new UserEntity();
             user.setLogin("mock");

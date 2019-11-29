@@ -9,6 +9,7 @@ public interface ToDoService {
 
     List<ToDoDTO> getToDos();
     void addToDo(CreateToDoForm createToDoForm);
+    void deleteById(Long id);
     String getUserLogin();
 
 }

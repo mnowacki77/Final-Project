@@ -11,24 +11,29 @@
 <body>
 
 <div layout:fragment="content">
-    <a th:href="@{'/todo/add'}" class="btn btn-info btn-group-justified" role="button" th:text="Add"></a>
+    <a th:href="@{/todo/add}" class="btn btn-info btn-group-justified" role="button" th:text="Add"></a>
     <table class="table">
         <thead>
         <tr>
+            <th th:text="No."></th>
             <th th:text="Id"></th>
             <th th:text="Name"></th>
             <th th:text="Status"></th>
             <th th:text="Deadline"></th>
-            <th></th>
+            <th th:text="Actions"></th>
         </tr>
         </thead>
         <tbody>
         <th:block th:each="todo : ${todos}">
             <tr>
+                <td th:text="${todoStat.index+1}"></td>
                 <td th:text="${todo.id}">...</td>
                 <td th:text="${todo.name}">...</td>
                 <td th:text="${todo.status}">...</td>
                 <td th:text="${todo.deadline}">...</td>
+                <td>
+                    <a th:href="@{'/todo/' + ${todo.id} + '/delete'}" class="btn btn-info" role="button">Delete</a>
+                </td>
             </tr>
         </th:block>
         </tbody>

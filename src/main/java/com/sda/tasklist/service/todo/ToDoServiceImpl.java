@@ -45,5 +45,8 @@ public class ToDoServiceImpl implements ToDoService {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
-
+    @Override
+    public void deleteById(Long id) {
+        toDoRepository.deleteById(id);
+    }
 }

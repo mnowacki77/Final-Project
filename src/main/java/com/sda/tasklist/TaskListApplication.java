@@ -25,13 +25,6 @@ public class TaskListApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if (!userRoleRepository.existsByName("ADMIN")) {
-            userRoleRepository.save(new UserRoleEntity("ADMIN"));
-        }
-        if (!userRoleRepository.existsByName("USER")) {
-            userRoleRepository.save(new UserRoleEntity("USER"));
-        }
-
 
     }
 
