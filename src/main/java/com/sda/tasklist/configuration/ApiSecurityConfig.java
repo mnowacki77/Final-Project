@@ -31,13 +31,8 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .antMatcher("/api/v1/todos/**")
                 .authorizeRequests()
-                .anyRequest().hasRole("USER")
+                .anyRequest().hasAuthority("USER")
                 .and().httpBasic();
-
-//        http.csrf().disable()
-//                .antMatcher("/api/v1/todos/**")
-//                .authorizeRequests()
-//                .anyRequest().permitAll();
     }
 
     @Override
