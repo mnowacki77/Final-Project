@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit task</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <h3 th:text="'Id: ' + ${todo.id}"></h3>
+        <h3 th:text="'Name: ' + ${todo.name}"></h3>
+        <h3 th:text="'Creation date: ' + ${todo.creationDate}"></h3>
+        <h3 th:text="'Description: ' + ${todo.description}"></h3>
+        <h3 th:text="'Status: ' + ${todo.status}"></h3>
+        <h3 th:text="'Deadline: ' + ${todo.deadline}"></h3>
+        <a th:href="@{'/todo/edit/' + ${todo.id}}" class="btn btn-info form-control"
+           role="button">Edit</a>
+    </div>
+</div>
+</body>
+</html>

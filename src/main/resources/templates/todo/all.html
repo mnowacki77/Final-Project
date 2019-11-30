@@ -33,14 +33,11 @@
                 <td th:text="${todo.deadline}">...</td>
                 <td th:bgcolor="white">
                     <div class="form-inline">
+                        <a th:href="@{'/todo/info/' + ${todo.id}}" class="btn btn-info form-control"
+                           role="button">More Info</a>
                         <form th:action="@{'/todo/done/' + ${todo.id}}" method="post">
                             <button type="submit" class="btn btn-primary form-control" name="todoId"
                                     th:value="${todo.id}">Mark as done
-                            </button>
-                        </form>
-                        <form th:action="@{'/todo/delete'}" method="post">
-                            <button type="submit" class="btn btn-primary form-control" name="todoId"
-                                    th:value="${todo.id}">Delete
                             </button>
                         </form>
                         <a th:href="@{'/todo/edit/' + ${todo.id}}" class="btn btn-info form-control"

@@ -12,7 +12,7 @@ public class LoginController {
 
     @RequestMapping
     ModelAndView getLoginPage() {
-        ModelAndView mnv = new ModelAndView("login");
+        ModelAndView mnv = new ModelAndView("user/login");
         mnv.addObject("loginForm", new LoginForm());
         return mnv;
     }

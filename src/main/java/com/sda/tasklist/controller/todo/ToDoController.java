@@ -67,5 +67,12 @@ public class ToDoController {
         return "redirect:/todo/all";
     }
 
+    @GetMapping("/info/{id}")
+    public ModelAndView info(@PathVariable String id) throws ToDoNotExistsException {
+        ModelAndView mnv = new ModelAndView("todo/info");
+        mnv.addObject("todo", toDoService.findById(Long.valueOf(id)));
+        return mnv;
+    }
+
 
 }
