@@ -12,7 +12,7 @@
 <div layout:fragment="content">
     <div class="container">
         Edit task
-        <form th:action="@{/todo/edit}" method="post" th:object="${editForm}">
+        <form th:action="@{/todo/edit/{id}(id=${editForm.id})}" method="post" th:object="${editForm}">
             <input th:type="hidden" th:field="*{id}">
             <label>Name</label>
             <input th:type="text" th:field="*{name}"/>

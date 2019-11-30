@@ -58,5 +58,11 @@ public class ToDoController {
         return "redirect:/todo/all";
     }
 
+    @PostMapping("/done/{id}")
+    public String done(@PathVariable String id) throws ToDoNotExistsException {
+        toDoService.markDone(Long.valueOf(id));
+        return "redirect:/todo/all";
+    }
+
 
 }

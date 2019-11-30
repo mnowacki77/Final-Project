@@ -25,18 +25,31 @@
         </thead>
         <tbody>
         <th:block th:each="todo : ${todos}">
-            <tr>
+            <tr th:style="${todo.isDone() == true ? 'background-color: green;' : 'background-color: white;'}">
                 <td th:text="${todoStat.index+1}"></td>
                 <td th:text="${todo.id}">...</td>
                 <td th:text="${todo.name}">...</td>
                 <td th:text="${todo.status}">...</td>
                 <td th:text="${todo.deadline}">...</td>
-                <td>
-                    <form th:action="@{'/todo/delete'}" method="post">
-                        <button type="submit" class="btn btn-primary" name="todoId" th:value="${todo.id}">Delete
-                        </button>
-                    </form>
-                    <a th:href="@{'/todo/edit/' + ${todo.id}}" class="btn btn-info" role="button">Edit</a>
+                <td th:bgcolor="white">
+                    <div class="form-inline">
+                        <form th:action="@{'/todo/done/' + ${todo.id}}" method="post">
+                            <button type="submit" class="btn btn-primary form-control" name="todoId"
+                                    th:value="${todo.id}">Mark as done
+                            </button>
+                        </form>
+                        <form th:action="@{'/todo/delete'}" method="post">
+                            <button type="submit" class="btn btn-primary form-control" name="todoId"
+                                    th:value="${todo.id}">Delete
+                            </button>
+                        </form>
+                        <a th:href="@{'/todo/edit/' + ${todo.id}}" class="btn btn-info form-control"
+                           role="button">Edit</a>
+                    </div>
+
+                </td>
+
+
             </tr>
         </th:block>
         </tbody>

@@ -73,7 +73,15 @@ public class ToDoServiceImpl implements ToDoService {
         toDoRepository.save(toDoEntity);
     }
 
-    public List<ToDoDTO> getAllTodos() {
+    @Override
+    public List<ToDoDTO> getAllToDos() {
         return toDoRepository.findAll().stream().map(t -> ToDoMapper.map(t)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void markDone(Long id) throws ToDoNotExistsException {
+        ToDoEntity toDoEntity = toDoRepository.findById(id).orElseThrow(() -> new ToDoNotExistsException("Task with given id doesn't exist"));
+        toDoEntity.setDone(true);
+        toDoRepository.save(toDoEntity);
     }
 }

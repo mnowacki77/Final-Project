@@ -22,7 +22,7 @@ public class ToDoRestController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity getToDos() {
-        List<ToDoDTO> allToDos = toDoService.getAllTodos();
+        List<ToDoDTO> allToDos = toDoService.getAllToDos();
         return ResponseEntity.ok().body(allToDos);
     }
 }

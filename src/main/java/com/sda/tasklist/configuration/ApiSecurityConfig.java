@@ -29,9 +29,9 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .antMatcher("/api/v1/todos")
+                .antMatcher("/api/v1/todos/**")
                 .authorizeRequests()
-                .anyRequest().hasAnyAuthority("ROLE_USER")
+                .anyRequest().hasRole("USER")
                 .and().httpBasic();
 
 //        http.csrf().disable()
