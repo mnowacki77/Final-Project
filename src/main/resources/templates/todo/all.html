@@ -32,8 +32,11 @@
                 <td th:text="${todo.status}">...</td>
                 <td th:text="${todo.deadline}">...</td>
                 <td>
-                    <a th:href="@{'/todo/' + ${todo.id} + '/delete'}" class="btn btn-info" role="button">Delete</a>
-                </td>
+                    <form th:action="@{'/todo/delete'}" method="post">
+                        <button type="submit" class="btn btn-primary" name="todoId" th:value="${todo.id}">Delete
+                        </button>
+                    </form>
+                    <a th:href="@{'/todo/edit/' + ${todo.id}}" class="btn btn-info" role="button">Edit</a>
             </tr>
         </th:block>
         </tbody>

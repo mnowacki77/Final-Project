@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit task</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        Edit task
+        <form th:action="@{/todo/edit}" method="post" th:object="${editForm}">
+            <input th:type="hidden" th:field="*{id}">
+            <label>Name</label>
+            <input th:type="text" th:field="*{name}"/>
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+            <br/>
+            <label>Description</label>
+            <input th:type="text" th:field="*{description}"/>
+            <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</div>
+            <br/>
+            <label>Status</label>
+            <input th:type="text" th:field="*{status}"/>
+            <div th:if="${#fields.hasErrors('status')}" th:errors="*{status}">Status Error</div>
+            <br/>
+            <label>Deadline</label>
+            <input th:type="date" th:value="*{deadline}" th:field="*{deadline}"/>
+            <div th:if="${#fields.hasErrors('deadline')}" th:errors="*{deadline}">Deadline Error</div>
+            <br/>
+
+            <button th:type="submit">Change</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
