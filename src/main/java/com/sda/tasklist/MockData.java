@@ -4,6 +4,7 @@ package com.sda.tasklist;
 import com.sda.tasklist.dao.todo.ToDoRepository;
 import com.sda.tasklist.dao.user.UserRepository;
 import com.sda.tasklist.dao.user.UserRoleRepository;
+import com.sda.tasklist.model.todo.Status;
 import com.sda.tasklist.model.todo.ToDoEntity;
 import com.sda.tasklist.model.user.UserEntity;
 import com.sda.tasklist.model.user.UserRoleEntity;
@@ -52,7 +53,7 @@ public class MockData {
             ToDoEntity todo = new ToDoEntity();
             todo.setName("Mock Task");
             todo.setDescription("Mock Description");
-            todo.setStatus("OPEN");
+            todo.setStatus(Status.OPEN);
             todo.setCreationDate(LocalDateTime.now());
             todo.setDeadline(LocalDate.now().plusDays(3));
             todo.setDone(false);

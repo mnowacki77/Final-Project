@@ -19,7 +19,7 @@ public class ToDoEntity {
 
     private String name;
     private String description;
-    private String status;
+    private Status status;
     private LocalDateTime creationDate;
     private LocalDate deadline;
     private boolean isDone;

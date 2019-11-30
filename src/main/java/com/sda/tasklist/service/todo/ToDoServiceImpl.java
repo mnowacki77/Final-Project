@@ -6,6 +6,7 @@ import com.sda.tasklist.dto.todo.CreateToDoForm;
 import com.sda.tasklist.dto.todo.ToDoDTO;
 import com.sda.tasklist.exception.ToDoNotExistsException;
 import com.sda.tasklist.mapper.todo.ToDoMapper;
+import com.sda.tasklist.model.todo.Status;
 import com.sda.tasklist.model.todo.ToDoEntity;
 import com.sda.tasklist.model.user.UserEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -39,6 +40,7 @@ public class ToDoServiceImpl implements ToDoService {
         ToDoEntity doEntity = ToDoMapper.map(createToDoForm);
         doEntity.setUser(userEntity);
         doEntity.setCreationDate(LocalDateTime.now());
+        doEntity.setStatus(Status.OPEN);
         toDoRepository.save(doEntity);
     }
 

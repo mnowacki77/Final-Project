@@ -3,6 +3,7 @@ package com.sda.tasklist.controller.todo;
 import com.sda.tasklist.dto.todo.CreateToDoForm;
 import com.sda.tasklist.dto.todo.ToDoDTO;
 import com.sda.tasklist.exception.ToDoNotExistsException;
+import com.sda.tasklist.model.todo.Status;
 import com.sda.tasklist.service.todo.ToDoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ public class ToDoController {
     public ModelAndView getToDos() {
         ModelAndView mnv = new ModelAndView("todo/all");
         mnv.addObject("todos", toDoService.getToDos());
+        mnv.addObject("status", Status.values());
         return mnv;
     }
 
@@ -48,6 +50,7 @@ public class ToDoController {
     public ModelAndView edit(@PathVariable String id) throws ToDoNotExistsException {
         ModelAndView mnv = new ModelAndView("todo/edit");
         mnv.addObject("editForm", toDoService.findById(Long.valueOf(id)));
+        mnv.addObject("statusOptions", Status.values());
         return mnv;
     }
 
