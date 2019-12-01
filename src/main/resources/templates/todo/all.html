@@ -12,17 +12,17 @@
     <table class="table">
         <thead>
         <tr>
-            <th th:text="No."></th>
-            <th th:text="Id"></th>
-            <th th:text="Name"></th>
-            <th th:text="Status"></th>
-            <th th:text="Deadline"></th>
-            <th th:text="Actions"></th>
+            <th>No.</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Deadline</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <th:block th:each="todo : ${todos}">
-            <tr th:style="${todo.isDone() == true ? 'background-color: green;' : 'background-color: white;'}">
+            <tr th:style="${todo.isDone() == true ? 'background-color: lightgreen;' : 'background-color: white;'}">
                 <td th:text="${todoStat.index+1}"></td>
                 <td th:text="${todo.id}">...</td>
                 <td th:text="${todo.name}">...</td>
@@ -40,10 +40,7 @@
                         <a th:href="@{'/todo/edit/' + ${todo.id}}" class="btn btn-info form-control"
                            role="button">Edit</a>
                     </div>
-
                 </td>
-
-
             </tr>
         </th:block>
         </tbody>
