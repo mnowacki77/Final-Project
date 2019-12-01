@@ -1,7 +1,6 @@
 package com.sda.tasklist;
 
-import com.sda.tasklist.dao.user.UserRoleRepository;
-import com.sda.tasklist.model.user.UserRoleEntity;
+import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -14,9 +13,6 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 
 @SpringBootApplication
 public class TaskListApplication implements CommandLineRunner {
-
-    @Autowired
-    private UserRoleRepository userRoleRepository;
 
 
     public static void main(String[] args) {
@@ -41,5 +37,10 @@ public class TaskListApplication implements CommandLineRunner {
         resolver.setTemplateMode(properties.getMode());
         resolver.setCacheable(properties.isCache());
         return resolver;
+    }
+
+    @Bean
+    public LayoutDialect layoutDialect() {
+        return new LayoutDialect();
     }
 }

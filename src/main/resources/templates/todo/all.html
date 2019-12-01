@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout/layout"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
+      layout:decorate="~{layout/layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>Task List</title>
+    <title>Tasks</title>
 </head>
 <body>
-
 <div layout:fragment="content">
     <a th:href="@{/todo/add}" class="btn btn-info btn-group-justified" role="button" th:text="Add"></a>
     <table class="table">
