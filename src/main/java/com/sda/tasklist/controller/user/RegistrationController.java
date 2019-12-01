@@ -3,7 +3,7 @@ package com.sda.tasklist.controller.user;
 import com.sda.tasklist.dto.user.CreateUserForm;
 import com.sda.tasklist.exception.UserExistsException;
 import com.sda.tasklist.service.user.RegistrationService;
-import com.sda.tasklist.validator.CreateUserFormValidator;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
@@ -19,14 +19,14 @@ public class RegistrationController {
     private final RegistrationService registrationService;
     private final Validator userValidator;
 
-    public RegistrationController(RegistrationService registrationService, CreateUserFormValidator userValidator) {
+    public RegistrationController(RegistrationService registrationService, @Qualifier("createUserFormValidator") Validator userValidator) {
         this.registrationService = registrationService;
         this.userValidator = userValidator;
     }
 
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.setValidator(userValidator);
+    @InitBinder("createUserForm")
+    public void initUserBinder(WebDataBinder binder) {
+        binder.addValidators(userValidator);
     }
 
     @GetMapping
@@ -37,7 +37,7 @@ public class RegistrationController {
     }
 
     @PostMapping
-    String register(@ModelAttribute @Validated CreateUserForm createUserForm, BindingResult bindingResult) throws UserExistsException {
+    String register(@ModelAttribute("createUserForm") @Validated CreateUserForm createUserForm, BindingResult bindingResult) throws UserExistsException {
         if (bindingResult.hasErrors()) {
             return "user/register";
         }
