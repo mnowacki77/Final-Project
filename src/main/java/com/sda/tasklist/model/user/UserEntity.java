@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -26,6 +27,7 @@ public class UserEntity {
     private LocalDate birthDate;
     private String securityQuestion;
     private String securityAnswer;
+    private LocalDateTime lastLoginStamp;
 
     @ManyToMany
     private Set<UserRoleEntity> roles = new HashSet<>();

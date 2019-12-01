@@ -15,5 +15,6 @@ public class UserDTO {
     private String email;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
+    private String lastLoginStamp;
 
 }

@@ -11,10 +11,11 @@
     <table class="table">
         <thead>
         <tr>
-            <th th:text="Id"></th>
-            <th th:text="Login"></th>
-            <th th:text="Email"></th>
-            <th th:text="Birthday"></th>
+            <th>Id</th>
+            <th>Login</th>
+            <th>Email</th>
+            <th>Birthday</th>
+            <th>Last seen</th>
             <th></th>
         </tr>
         </thead>
@@ -25,6 +26,7 @@
                 <td th:text="${user.login}">...</td>
                 <td th:text="${user.email}">...</td>
                 <td th:text="${user.birthDate}">...</td>
+                <td th:text="${user.lastLoginStamp}">...</td>
             </tr>
         </th:block>
         </tbody>
