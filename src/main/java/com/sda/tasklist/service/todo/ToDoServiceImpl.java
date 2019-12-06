@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,7 @@ public class ToDoServiceImpl implements ToDoService {
     @Override
     public List<ToDoDTO> getToDos() {
         UserEntity userEntity = userRepository.findByLogin(SecurityContextHolder.getContext().getAuthentication().getName()).get();
-        return userEntity.getToDoEntityList().stream().map(t -> ToDoMapper.map(t)).collect(Collectors.toList());
+        return userEntity.getToDoEntityList().stream().sorted(Comparator.comparing(ToDoEntity::getDeadline)).map(t -> ToDoMapper.map(t)).collect(Collectors.toList());
     }
 
     @Override
