@@ -9,23 +9,30 @@
 <body>
 <div layout:fragment="content">
     <div class="container">
-        Add task
-        <form th:action="@{/todo/add}" method="post" th:object="${createForm}">
-            <label>Name</label>
-            <input th:type="text" th:field="*{name}"/>
-            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
-            <br/>
-            <label>Description</label>
-            <input th:type="text" th:field="*{description}"/>
-            <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</div>
-            <br/>
-            <label>Deadline</label>
-            <input th:type="date" th:value="*{deadline}" th:field="*{deadline}"/>
-            <div th:if="${#fields.hasErrors('deadline')}" th:errors="*{deadline}">Deadline Error</div>
-            <br/>
-
-            <button th:type="submit">Add</button>
-        </form>
+        <h2>Add task</h2>
+        <div class="well-lg">
+            <form th:action="@{/todo/add}" method="post" th:object="${createForm}">
+                <label>Name</label>
+                <div class="form-group">
+                    <input th:type="text" class="form-control" th:field="*{name}"/>
+                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+                    <br/>
+                </div>
+                <label>Description</label>
+                <div class="form-group">
+                    <input th:type="text" class="form-control" th:field="*{description}"/>
+                    <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</div>
+                    <br/>
+                </div>
+                <label>Deadline</label>
+                <div class="form-group">
+                    <input th:type="date" class="form-control" th:value="*{deadline}" th:field="*{deadline}"/>
+                    <div th:if="${#fields.hasErrors('deadline')}" th:errors="*{deadline}">Deadline Error</div>
+                    <br/>
+                </div>
+                <button th:type="submit" class="btn btn-default form-control">Add</button>
+            </form>
+        </div>
     </div>
 </div>
 </body>
