@@ -9,36 +9,44 @@
 <body>
 <div layout:fragment="content">
     <div class="container">
-        Edit task
-        <form th:action="@{/todo/edit/{id}(id=${editForm.id})}" method="post" th:object="${editForm}">
-            <!--            <input th:type="hidden" th:field="*{id}">-->
-            <label>Name</label>
-            <input th:type="text" th:field="*{name}"/>
-            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
-            <br/>
-            <label>Description</label>
-            <input th:type="text" th:field="*{description}"/>
-            <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</div>
-            <br/>
-            <label>Status</label>
-            <select th:field="*{status}">
-                <th:block th:each="s : ${statusOptions}">
-                    <option th:value="${s}" th:text="${s}"></option>
-                </th:block>
-            </select>
-            <br/>
-            <label>Deadline</label>
-            <input th:type="date" th:value="*{deadline}" th:field="*{deadline}"/>
-            <div th:if="${#fields.hasErrors('deadline')}" th:errors="*{deadline}">Deadline Error</div>
-            <br/>
-
-            <button th:type="submit">Change</button>
-        </form>
-        <form th:action="@{'/todo/delete'}" method="post">
-            <button type="submit" class="btn btn-primary form-control" name="todoId"
-                    th:value="${id}">Delete
-            </button>
-        </form>
+        <h2>Edit task</h2>
+        <div class="well-lg">
+            <form th:action="@{/todo/edit/{id}(id=${editForm.id})}" method="post" th:object="${editForm}">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input th:type="text" th:field="*{name}" class="form-control"/>
+                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <input th:type="text" th:field="*{description}" class="form-control"/>
+                    <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</div>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select th:field="*{status}" class="form-control">
+                        <th:block th:each="s : ${statusOptions}">
+                            <option th:value="${s}" th:text="${s}"></option>
+                        </th:block>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Deadline</label>
+                    <input th:type="date" th:value="*{deadline}" th:field="*{deadline}" class="form-control"/>
+                    <div th:if="${#fields.hasErrors('deadline')}" th:errors="*{deadline}">Deadline Error</div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-warning form-control" th:type="submit">Change</button>
+                </div>
+                <div class="form-group">
+                    <form th:action="@{'/todo/delete'}" method="post">
+                        <button type="submit" class="btn btn-danger form-control" name="todoId"
+                                th:value="${id}">Delete
+                        </button>
+                    </form>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 </body>
