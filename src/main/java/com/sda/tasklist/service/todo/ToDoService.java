@@ -23,4 +23,6 @@ public interface ToDoService {
     List<ToDoDTO> getAllToDos();
 
     void markDone(Long id) throws ToDoNotExistsException;
+
+    void markUnDone(Long id) throws ToDoNotExistsException;
 }

@@ -1,5 +1,5 @@
 package com.sda.tasklist.model.todo;
 
 public enum Status {
-    OPEN, CLOSE, DELAY;
+    OPEN, CLOSE, DELAY, REOPEN;
 }

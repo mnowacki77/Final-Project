@@ -67,6 +67,12 @@ public class ToDoController {
         return "redirect:/todo/all";
     }
 
+    @PostMapping("/undone/{id}")
+    public String undone(@PathVariable String id) throws ToDoNotExistsException {
+        toDoService.markUnDone(Long.valueOf(id));
+        return "redirect:/todo/all";
+    }
+
     @GetMapping("/info/{id}")
     public ModelAndView info(@PathVariable String id) throws ToDoNotExistsException {
         ModelAndView mnv = new ModelAndView("todo/info");

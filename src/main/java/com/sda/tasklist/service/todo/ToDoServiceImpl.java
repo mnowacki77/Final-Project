@@ -72,7 +72,7 @@ public class ToDoServiceImpl implements ToDoService {
         toDoEntity.setDescription(toDoDTO.getDescription());
         toDoEntity.setStatus(toDoDTO.getStatus());
         toDoEntity.setDeadline(LocalDate.parse(toDoDTO.getDeadline()));
-        toDoEntity.setDone(toDoDTO.isDone());
+        toDoEntity.setDone(toDoEntity.getStatus() == Status.CLOSE);
         toDoRepository.save(toDoEntity);
     }
 
@@ -85,6 +85,15 @@ public class ToDoServiceImpl implements ToDoService {
     public void markDone(Long id) throws ToDoNotExistsException {
         ToDoEntity toDoEntity = toDoRepository.findById(id).orElseThrow(() -> new ToDoNotExistsException("Task with given id doesn't exist"));
         toDoEntity.setDone(true);
+        toDoEntity.setStatus(Status.CLOSE);
+        toDoRepository.save(toDoEntity);
+    }
+
+    @Override
+    public void markUnDone(Long id) throws ToDoNotExistsException {
+        ToDoEntity toDoEntity = toDoRepository.findById(id).orElseThrow(() -> new ToDoNotExistsException("Task with given id doesn't exist"));
+        toDoEntity.setDone(false);
+        toDoEntity.setStatus(Status.REOPEN);
         toDoRepository.save(toDoEntity);
     }
 }

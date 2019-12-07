@@ -32,11 +32,20 @@
                     <div class="form-inline">
                         <a th:href="@{'/todo/info/' + ${todo.id}}" class="btn btn-info form-control"
                            role="button">More Info</a>
+                        <th:block th:if="${todo.isDone()==false}">
                         <form th:action="@{'/todo/done/' + ${todo.id}}" method="post">
                             <button type="submit" class="btn btn-primary form-control" name="todoId"
                                     th:value="${todo.id}">Mark as done
                             </button>
                         </form>
+                        </th:block>
+                        <th:block th:if="${todo.isDone()==true}">
+                            <form th:action="@{'/todo/undone/' + ${todo.id}}" method="post">
+                                <button type="submit" class="btn btn-primary form-control" name="todoId"
+                                        th:value="${todo.id}">Mark as undone
+                                </button>
+                            </form>
+                        </th:block>
                         <a th:href="@{'/todo/edit/' + ${todo.id}}" class="btn btn-info form-control"
                            role="button">Edit</a>
                     </div>
