@@ -27,7 +27,7 @@
                 </a>
                 <span class="glyphicon glyphicon-arrow-down"></span>
             </th>
-            <th colspan="3">Actions</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -39,28 +39,30 @@
                 <td th:text="${todo.status}">...</td>
                 <td th:text="${todo.deadline}">...</td>
 
-                <td th:bgcolor="white">
-                    <form th:action="@{'/todo/done/' + ${todo.id}}" method="post" th:if="${todo.isDone()==false}">
-                        <div class="btn-group" role="group" aria-label="">
+                <td th:width="300">
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
                             <a type="button" th:href="@{'/todo/info/' + ${todo.id}}" class="btn btn-default">More
                                 Info</a>
-                            <button type="submit" class="btn btn-default" name="todoId"
-                                    th:value="${todo.id}">Mark as done
-                            </button>
+                        </div>
+                        <div class="btn-group">
+                            <form th:action="@{'/todo/done/' + ${todo.id}}" method="post"
+                                  th:if="${todo.isDone()==false}">
+                                <button type="submit" class="btn btn-default" name="todoId"
+                                        th:value="${todo.id}">Mark as done
+                                </button>
+                            </form>
+                            <form th:action="@{'/todo/undone/' + ${todo.id}}" method="post"
+                                  th:unless="${todo.isDone()==false}">
+                                <button type="submit" class="btn btn-default" name="todoId"
+                                        th:value="${todo.id}">Mark as undone
+                                </button>
+                            </form>
+                        </div>
+                        <div class="btn-group">
                             <a type="button" th:href="@{'/todo/edit/' + ${todo.id}}" class="btn btn-default">Edit</a>
                         </div>
-                    </form>
-                    <form th:action="@{'/todo/undone/' + ${todo.id}}" method="post" th:unless="${todo.isDone()==false}">
-                        <div class="btn-group" role="group" aria-label="">
-                            <a type="button" th:href="@{'/todo/info/' + ${todo.id}}" class="btn btn-default">More
-                                Info</a>
-                            <button type="submit" class="btn btn-default" name="todoId"
-                                    th:value="${todo.id}">Mark as undone
-                            </button>
-                            <a type="button" th:href="@{'/todo/edit/' + ${todo.id}}" class="btn btn-default">Edit</a>
-                        </div>
-                    </form>
-
+                    </div>
                 </td>
             </tr>
         </th:block>
