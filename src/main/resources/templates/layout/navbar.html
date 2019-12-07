@@ -26,7 +26,9 @@
                 </ul>
                 <ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
                     <li>
-                        <a th:href="@{/todo/all}">Tasks</a>
+                        <a th:href="@{/todo/all}">
+                            <span th:text="${' Tasks (' + session.quantity + ')'}"/>
+                        </a>
                     </li>
                     <li sec:authorize="hasRole('ADMIN')">
                         <a th:href="@{/admin/users}">List of Users</a>
@@ -55,7 +57,7 @@
                     <li>
                         <a th:href="@{/logout}">
                             <span class="glyphicon glyphicon-log-out"></span>
-                            Logout
+                            <span th:text="${' Logout (' + #authentication.getPrincipal().getUsername() + ')'}"/>
                         </a>
                     </li>
                 </ul>

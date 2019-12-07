@@ -13,10 +13,20 @@
         <thead>
         <tr>
             <th>No.</th>
-            <th>Id</th>
+            <th>
+                <a style="color: black" th:href="@{/todo/all}">
+                    Id
+                </a>
+                <span class="glyphicon glyphicon-arrow-down"></span>
+            </th>
             <th>Name</th>
             <th>Status</th>
-            <th>Deadline</th>
+            <th>
+                <a style="color: black" th:href="@{/todo/all(sort='Deadline')}">
+                    Deadline
+                </a>
+                <span class="glyphicon glyphicon-arrow-down"></span>
+            </th>
             <th>Actions</th>
         </tr>
         </thead>

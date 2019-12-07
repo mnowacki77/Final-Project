@@ -30,9 +30,12 @@ public class ToDoServiceImpl implements ToDoService {
     }
 
     @Override
-    public List<ToDoDTO> getToDos() {
+    public List<ToDoDTO> getToDos(String sort) {
         UserEntity userEntity = userRepository.findByLogin(SecurityContextHolder.getContext().getAuthentication().getName()).get();
-        return userEntity.getToDoEntityList().stream().sorted(Comparator.comparing(ToDoEntity::getDeadline)).map(t -> ToDoMapper.map(t)).collect(Collectors.toList());
+        if (sort.equals("Deadline")) {
+            return userEntity.getToDoEntityList().stream().sorted(Comparator.comparing(ToDoEntity::getDeadline)).map(t -> ToDoMapper.map(t)).collect(Collectors.toList());
+        }
+        return userEntity.getToDoEntityList().stream().map(t -> ToDoMapper.map(t)).collect(Collectors.toList());
     }
 
     @Override
@@ -95,5 +98,10 @@ public class ToDoServiceImpl implements ToDoService {
         toDoEntity.setDone(false);
         toDoEntity.setStatus(Status.REOPEN);
         toDoRepository.save(toDoEntity);
+    }
+
+    @Override
+    public Long getQuantity() {
+        return Long.valueOf(getToDos("").size());
     }
 }
