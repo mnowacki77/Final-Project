@@ -55,7 +55,7 @@
                     <li>
                         <a th:href="@{/logout}">
                             <span class="glyphicon glyphicon-log-out"></span>
-                            Logout
+                            <span th:text="${' Logout (' + #authentication.getPrincipal().getUsername() + ')'}"/>
                         </a>
                     </li>
                 </ul>

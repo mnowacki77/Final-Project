@@ -2,6 +2,7 @@ package com.sda.tasklist.controller;
 
 import com.sda.tasklist.dto.user.LoginForm;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -10,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/login")
 public class LoginController {
 
-    @RequestMapping
+    @GetMapping
     ModelAndView getLoginPage() {
         ModelAndView mnv = new ModelAndView("user/login");
         mnv.addObject("loginForm", new LoginForm());

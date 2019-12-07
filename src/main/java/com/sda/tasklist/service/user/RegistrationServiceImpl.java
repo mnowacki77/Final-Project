@@ -9,6 +9,8 @@ import com.sda.tasklist.model.user.UserEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class RegistrationServiceImpl implements RegistrationService {
 
@@ -32,6 +34,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         }
         UserEntity userEntity = UserMapper.map(createUserForm);
         userEntity.setPassword(passwordEncoder.encode(createUserForm.getPassword()));
+        userEntity.setLastLoginStamp(LocalDateTime.now());
 
         if (userEntity.getLogin().contains("admin")) {
             userEntity.getRoles().add(userRoleRepository.findByName("ADMIN"));
