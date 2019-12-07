@@ -3,6 +3,7 @@ package com.sda.tasklist.controller.todo;
 import com.sda.tasklist.dto.todo.CreateToDoForm;
 import com.sda.tasklist.dto.todo.ToDoDTO;
 import com.sda.tasklist.exception.ToDoNotExistsException;
+import com.sda.tasklist.model.todo.Sorting;
 import com.sda.tasklist.model.todo.Status;
 import com.sda.tasklist.service.todo.ToDoService;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,13 @@ public class ToDoController {
     @GetMapping("/all")
     public ModelAndView getToDos(@RequestParam(defaultValue = "DEFAULT", required = false) String sort, HttpSession session) {
         ModelAndView mnv = new ModelAndView("todo/all");
-        mnv.addObject("todos", toDoService.getToDos(sort));
+        Sorting sorting = Sorting.DEFAULT;
+        try {
+            sorting = Sorting.valueOf(sort.toUpperCase());
+        } catch (Exception e) {
+            sorting = Sorting.DEFAULT;
+        }
+        mnv.addObject("todos", toDoService.getToDos(sorting));
         mnv.addObject("status", Status.values());
         session.setAttribute("quantity", toDoService.getQuantity());
         return mnv;

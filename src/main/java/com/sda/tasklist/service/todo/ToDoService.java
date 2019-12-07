@@ -3,12 +3,13 @@ package com.sda.tasklist.service.todo;
 import com.sda.tasklist.dto.todo.CreateToDoForm;
 import com.sda.tasklist.dto.todo.ToDoDTO;
 import com.sda.tasklist.exception.ToDoNotExistsException;
+import com.sda.tasklist.model.todo.Sorting;
 
 import java.util.List;
 
 public interface ToDoService {
 
-    List<ToDoDTO> getToDos(String sort);
+    List<ToDoDTO> getToDos(Sorting sort);
 
     void addToDo(CreateToDoForm createToDoForm);
 

@@ -6,6 +6,7 @@ import com.sda.tasklist.dto.todo.CreateToDoForm;
 import com.sda.tasklist.dto.todo.ToDoDTO;
 import com.sda.tasklist.exception.ToDoNotExistsException;
 import com.sda.tasklist.mapper.todo.ToDoMapper;
+import com.sda.tasklist.model.todo.Sorting;
 import com.sda.tasklist.model.todo.Status;
 import com.sda.tasklist.model.todo.ToDoEntity;
 import com.sda.tasklist.model.user.UserEntity;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,18 +26,26 @@ public class ToDoServiceImpl implements ToDoService {
     private final ToDoRepository toDoRepository;
     private final UserRepository userRepository;
 
+    private Sorting sorting = Sorting.DEFAULT;
+
     public ToDoServiceImpl(ToDoRepository toDoRepository, UserRepository userRepository) {
         this.toDoRepository = toDoRepository;
         this.userRepository = userRepository;
     }
 
     @Override
-    public List<ToDoDTO> getToDos(String sort) {
+    public List<ToDoDTO> getToDos(Sorting sort) {
         UserEntity userEntity = userRepository.findByLogin(SecurityContextHolder.getContext().getAuthentication().getName()).get();
-        if (sort.equals("Deadline")) {
-            return userEntity.getToDoEntityList().stream().sorted(Comparator.comparing(ToDoEntity::getDeadline)).map(t -> ToDoMapper.map(t)).collect(Collectors.toList());
+        if (Arrays.asList(Sorting.values()).contains(sort) && sort != Sorting.DEFAULT) {
+            sorting = sort;
         }
-        return userEntity.getToDoEntityList().stream().map(t -> ToDoMapper.map(t)).collect(Collectors.toList());
+        switch (sorting) {
+            case DEADLINE:
+                return userEntity.getToDoEntityList().stream().sorted(Comparator.comparing(ToDoEntity::getDeadline)).map(t -> ToDoMapper.map(t)).collect(Collectors.toList());
+            case ID:
+            default:
+                return userEntity.getToDoEntityList().stream().map(t -> ToDoMapper.map(t)).collect(Collectors.toList());
+        }
     }
 
     @Override
@@ -102,6 +112,6 @@ public class ToDoServiceImpl implements ToDoService {
 
     @Override
     public Long getQuantity() {
-        return Long.valueOf(getToDos("").size());
+        return Long.valueOf(getToDos(Sorting.DEFAULT).size());
     }
 }
