@@ -39,31 +39,27 @@
                 <td th:text="${todo.status}">...</td>
                 <td th:text="${todo.deadline}">...</td>
 
-                <td class="form-group">
-                    <a th:href="@{'/todo/info/' + ${todo.id}}" class="btn btn-info form-control"
-                       role="button">More Info</a>
-                </td>
-                <td class="form-group">
-                    <th:block th:if="${todo.isDone()==false}">
-                        <form th:action="@{'/todo/done/' + ${todo.id}}" method="post">
-                            <button type="submit" class="btn btn-primary form-control" name="todoId"
+                <td th:bgcolor="white">
+                    <form th:action="@{'/todo/done/' + ${todo.id}}" method="post" th:if="${todo.isDone()==false}">
+                        <div class="btn-group" role="group" aria-label="">
+                            <a type="button" th:href="@{'/todo/info/' + ${todo.id}}" class="btn btn-default">More
+                                Info</a>
+                            <button type="submit" class="btn btn-default" name="todoId"
                                     th:value="${todo.id}">Mark as done
                             </button>
-                        </form>
-                    </th:block>
-                    <th:block th:if="${todo.isDone()==true}">
-                        <form th:action="@{'/todo/undone/' + ${todo.id}}" method="post">
-                            <button type="submit" class="btn btn-primary form-control" name="todoId"
+                            <a type="button" th:href="@{'/todo/edit/' + ${todo.id}}" class="btn btn-default">Edit</a>
+                        </div>
+                    </form>
+                    <form th:action="@{'/todo/undone/' + ${todo.id}}" method="post" th:unless="${todo.isDone()==false}">
+                        <div class="btn-group" role="group" aria-label="">
+                            <a type="button" th:href="@{'/todo/info/' + ${todo.id}}" class="btn btn-default">More
+                                Info</a>
+                            <button type="submit" class="btn btn-default" name="todoId"
                                     th:value="${todo.id}">Mark as undone
                             </button>
-                        </form>
-                    </th:block>
-                </td>
-                <td class="form-group">
-                    <a th:href="@{'/todo/edit/' + ${todo.id}}" class="btn btn-info form-control"
-                       role="button">Edit</a>
-                </td>
-
+                            <a type="button" th:href="@{'/todo/edit/' + ${todo.id}}" class="btn btn-default">Edit</a>
+                        </div>
+                    </form>
 
                 </td>
             </tr>
