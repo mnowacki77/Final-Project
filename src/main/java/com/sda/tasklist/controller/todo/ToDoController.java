@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/todo")
 public class ToDoController {
@@ -20,10 +22,11 @@ public class ToDoController {
     }
 
     @GetMapping("/all")
-    public ModelAndView getToDos() {
+    public ModelAndView getToDos(@RequestParam(defaultValue = "DEFAULT", required = false) String sort, HttpSession session) {
         ModelAndView mnv = new ModelAndView("todo/all");
-        mnv.addObject("todos", toDoService.getToDos());
+        mnv.addObject("todos", toDoService.getToDos(sort));
         mnv.addObject("status", Status.values());
+        session.setAttribute("quantity", toDoService.getQuantity());
         return mnv;
     }
 

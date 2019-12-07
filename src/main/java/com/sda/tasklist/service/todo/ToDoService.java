@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ToDoService {
 
-    List<ToDoDTO> getToDos();
+    List<ToDoDTO> getToDos(String sort);
 
     void addToDo(CreateToDoForm createToDoForm);
 
@@ -23,4 +23,7 @@ public interface ToDoService {
     List<ToDoDTO> getAllToDos();
 
     void markDone(Long id) throws ToDoNotExistsException;
+
+    Long getQuantity();
+
 }
