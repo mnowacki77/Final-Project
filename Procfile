@@ -1,0 +1,1 @@
+web: java -jar target/final-project-to-do-app.jar
