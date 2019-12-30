@@ -1,1 +1,1 @@
-web: java -jar target/final-project-to-do-app.jar
+web: java -Dserver.port=$PORT $Java-opts -jar target/*.jar
