@@ -1,1 +1,1 @@
-web: java -jar target/task-list.jar
+web: java -Dserver.port=$PORT -jar target/task-list.jar
