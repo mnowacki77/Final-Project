@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT $Java-opts -jar target/*.jar
+web: java -jar target/task-list.war
