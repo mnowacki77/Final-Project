@@ -1,1 +1,1 @@
-web: java -jar target/task-list.war
+web: java -jar target/task-list.jar
